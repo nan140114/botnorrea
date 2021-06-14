@@ -5,13 +5,13 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 defaults:
   run:
-    working-directory: src
+    working-directory: ./
 
 jobs:
   build:
@@ -29,9 +29,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Installing dependencies
-      run: npm install
-    - name: Installing dependencies endpoint
-      working-directory: ./src/endpoint
       run: npm install
     - name: Running tests
       run: npm test

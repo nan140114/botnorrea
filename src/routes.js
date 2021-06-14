@@ -3,6 +3,6 @@ const router = require('express').Router();
 const api = require('./api');
 
 router.use('/api', api);
-router.use('/test', (_req, res) => res.send({ data: 'hello world!' }));
+router.use('/', (_req, res) => res.send({ data: 'botnorreaa online!' }));
 
 module.exports = router;
