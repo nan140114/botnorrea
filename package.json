@@ -8,7 +8,8 @@
   "scripts": {
     "server:dev": "nodemon src/index.js",
     "server:prod": "node src/index.js",
-    "test:win": "SET NODE_ENV=test && jest"
+    "test:win": "SET NODE_ENV=test && jest",
+    "start": "node src/index.js"
   },
   "dependencies": {
     "discord.js": "^12.5.3",

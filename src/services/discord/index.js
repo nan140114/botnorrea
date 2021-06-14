@@ -1,12 +1,18 @@
 const fs = require('fs');
-const { DISCORD_PREFIX, DISCORD_TOKEN } = require('../../constants');
-
 const Discord = require('discord.js');
+
+const { BOT_PREFIX, DISCORD_TOKEN } = require('../../constants');
+const [
+    D_TOKEN_0,
+    D_TOKEN_1,
+    D_TOKEN_2
+] = DISCORD_TOKEN;
+
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
 const commandFiles = fs
-    .readdirSync('./commands')
+    .readdirSync(`${__dirname}/commands`)
     .filter(file => file.endsWith('.js'));
 
 commandFiles.forEach(commandFile => {
@@ -20,11 +26,11 @@ client.on('ready', () => {
 
 client.on('message', message => {
     const isInvalidCommand = message.author.bot ||
-        !message.content.startsWith(DISCORD_PREFIX);
+        !message.content.startsWith(BOT_PREFIX);
     if (isInvalidCommand) return;
 
     const args = message.content
-        .slice(DISCORD_PREFIX.length)
+        .slice(BOT_PREFIX.length)
         .trim()
         .split(' ');
     const command = args
@@ -41,6 +47,21 @@ client.on('message', message => {
     }
 });
 
-const init = () => client.login(DISCORD_TOKEN);
+const init = async () => {
+    try {
+        await client.login(`${D_TOKEN_0}.${D_TOKEN_1}.${D_TOKEN_2}`);
+    } catch (error) {
+        console.log(`discord.js error: ${error.message}`);
+    }
+};
 
-module.exports = { init };
+// Enable graceful stop
+const gracefulStop = () => {
+    console.log('discord.js client destroy');
+    client.destroy();
+};
+
+module.exports = {
+    gracefulStop,
+    init
+};
