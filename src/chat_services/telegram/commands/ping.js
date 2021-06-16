@@ -1,9 +1,11 @@
 /* eslint-disable sort-keys */
+const { ping } = require('../../../services/commands');
 
 module.exports = {
     name: 'ping',
     // eslint-disable-next-line no-unused-vars
     execute (context) {
-        context.reply('Pong.');
+        const reply = ping();
+        context.reply(reply);
     }
 };

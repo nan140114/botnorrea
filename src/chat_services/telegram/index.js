@@ -10,8 +10,19 @@ const commandFiles = fs
     .filter(file => file.endsWith('.js'));
 
 commandFiles.forEach(commandFile => {
-    const command = require(`./commands/${commandFile}`);
-    bot.command(`${BOT_PREFIX}${command.name}`, command.execute);
+    const commandScript = require(`./commands/${commandFile}`);
+    const command = `${BOT_PREFIX}${commandScript.name}`;
+    const firstIndex = 0;
+    const execute = context => {
+        const { message } = context;
+        const args = message.text
+            .trim()
+            .split(' ')
+            .filter((_, index) => index > firstIndex);
+
+        commandScript.execute(context, args);
+    };
+    bot.command(command, execute);
 });
 
 const init = async () => {

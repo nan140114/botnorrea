@@ -9,11 +9,11 @@ const routes = require('./routes');
 const {
     init: initDiscord,
     gracefulStop: stopDiscord
-} = require('./services/discord');
+} = require('./chat_services/discord');
 const {
     init: initTelegram,
     gracefulStop: stopTelegraf
-} = require('./services/telegram');
+} = require('./chat_services/telegram');
 
 const server = express();
 server.use(express.json());

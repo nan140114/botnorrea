@@ -6,14 +6,16 @@
   "author": "jotacemarin@gmail.com",
   "license": "MIT",
   "scripts": {
-    "server:dev": "nodemon src/index.js",
-    "server:prod": "node src/index.js",
     "test:win": "SET NODE_ENV=test && jest",
-    "start": "node src/index.js"
+    "cp:service_account": "cp botnorrea_credentials.json src/constants/botnorrea_credentials.json",
+    "cp": "yarn cp:service_account",
+    "server:dev": "nodemon src/index.js",
+    "start": "yarn cp && node src/index.js"
   },
   "dependencies": {
     "discord.js": "^12.5.3",
     "express": "^4.17.1",
+    "googleapis": "39",
     "telegraf": "^4.3.0"
   },
   "devDependencies": {
