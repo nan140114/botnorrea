@@ -6,13 +6,15 @@
   "author": "jotacemarin@gmail.com",
   "license": "MIT",
   "scripts": {
-    "test:win": "SET NODE_ENV=test && jest",
+    "test": "NODE_ENV=test && jest --detectOpenHandles --forceExit",
+    "test:win": "SET NODE_ENV=test && jest --detectOpenHandles --forceExit",
     "cp:service_account": "cp botnorrea_credentials.json src/constants/botnorrea_credentials.json",
     "cp": "yarn cp:service_account",
     "server:dev": "nodemon src/index.js",
     "start": "yarn cp && node src/index.js"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "discord.js": "^12.5.3",
     "express": "^4.17.1",
     "googleapis": "39",

@@ -21,7 +21,7 @@ commandFiles.forEach(commandFile => {
 });
 
 client.on('ready', () => {
-    console.log(`Logged in as ${client.user.tag}!`);
+    console.log(`discord.js: Logged in as ${client.user.tag}!`);
 });
 
 client.on('message', message => {

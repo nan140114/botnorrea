@@ -28,7 +28,7 @@ commandFiles.forEach(commandFile => {
 const init = async () => {
     try {
         await bot.launch();
-        console.log('@botnorrea_bot was launched!');
+        console.log('telegraf js: @botnorrea_bot was launched!');
     } catch (error) {
         console.log(`telegraf error: ${error.message}`);
     }

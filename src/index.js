@@ -4,6 +4,7 @@ const express = require('express');
 const { HOST, PORT, SIGINT, SIGTERM } = require('./constants');
 const { notFound, errorHandler } = require('./middlewares');
 const routes = require('./routes');
+const { startBots, stopBots } = require('./services/remote_botnorrea');
 
 /** Discord */
 const {
@@ -24,14 +25,20 @@ server.use(errorHandler);
 
 const serverRunning = server.listen(PORT, HOST, async () => {
     console.log(`server started at ${HOST}:${PORT}`);
-    await initDiscord();
-    await initTelegram();
+    const stoped = await stopBots();
+    if (stoped) {
+        await initDiscord();
+        await initTelegram();
+    }
 });
 
 const shutDown = () => {
-    serverRunning.close(() => {
-        stopTelegraf();
-        stopDiscord();
+    serverRunning.close(async () => {
+        const started = await startBots();
+        if (started) {
+            stopTelegraf();
+            stopDiscord();
+        }
         console.log('Received kill signal, shutting down gracefully');
     });
 };

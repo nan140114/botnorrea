@@ -1,6 +1,5 @@
 const { google } = require('googleapis');
-
-const credentials = require('../constants/botnorrea_credentials.json');
+const { GDRIVE_CREDENTIALS } = require('../constants');
 
 const scopes = ['https://www.googleapis.com/auth/drive'];
 
@@ -32,9 +31,9 @@ const DEFAULT_FIELDS = [
 ].join(',');
 
 const auth = new google.auth.JWT(
-    credentials.client_email,
+    GDRIVE_CREDENTIALS.client_email,
     null,
-    credentials.private_key,
+    GDRIVE_CREDENTIALS.private_key,
     scopes
 );
 

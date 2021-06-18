@@ -24,13 +24,31 @@ const DISCORD_TOKEN = [
 
 const TELEGRAM_TOKEN = '1674935871:AAG0uYoBkCjtZjNP04fMV7nlmqAGZZOhBSs';
 
+const GDRIVE_CREDENTIALS = NODE_ENV === 'test'
+    ? require('./__mocks__/botnorrea_credentials.json')
+    : require('./botnorrea_credentials.json');
+
+const REMOTE_BOTNORREA = 'https://botnorrea.onrender.com';
+const REMOTE_API_V1 = 'v1';
+const REMOTE_BOTNORREA_API = `${REMOTE_BOTNORREA}/api/${REMOTE_API_V1}`;
+
+const BOT_NONE = 'none';
+const BOT_START = 'start';
+const BOT_STOP = 'stop';
+
 module.exports = {
+    BOT_NONE,
     BOT_PREFIX,
+    BOT_START,
+    BOT_STOP,
     DISCORD_APPLICATION_ID,
     DISCORD_PUBLIC_KEY,
     DISCORD_TOKEN,
+    GDRIVE_CREDENTIALS,
     HOST,
+    NODE_ENV,
     PORT,
+    REMOTE_BOTNORREA_API,
     SIGINT,
     SIGTERM,
     TELEGRAM_TOKEN,
