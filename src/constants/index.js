@@ -27,6 +27,9 @@ const TELEGRAM_TOKEN = '1674935871:AAG0uYoBkCjtZjNP04fMV7nlmqAGZZOhBSs';
 const GDRIVE_CREDENTIALS = NODE_ENV === 'test'
     ? require('./__mocks__/botnorrea_credentials.json')
     : require('./botnorrea_credentials.json');
+const FIREBASE_CREDENTIALS = NODE_ENV === 'test'
+    ? require('./__mocks__/botnorrea-firebase-adminsdk.json')
+    : require('./botnorrea-firebase-adminsdk.json');
 
 const REMOTE_BOTNORREA = 'https://botnorrea.onrender.com';
 const REMOTE_API_V1 = 'v1';
@@ -44,6 +47,7 @@ module.exports = {
     DISCORD_APPLICATION_ID,
     DISCORD_PUBLIC_KEY,
     DISCORD_TOKEN,
+    FIREBASE_CREDENTIALS,
     GDRIVE_CREDENTIALS,
     HOST,
     NODE_ENV,

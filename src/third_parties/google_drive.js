@@ -29,6 +29,7 @@ const DEFAULT_FIELDS = [
     FIELD_VIEW_LINK,
     FIELD_PERMISSIONS
 ].join(',');
+const DEFAULT_PAGE_SIZE = 10;
 
 const auth = new google.auth.JWT(
     GDRIVE_CREDENTIALS.client_email,
@@ -37,25 +38,60 @@ const auth = new google.auth.JWT(
     scopes
 );
 
-const auhtOptions = {
+const authOptions = {
     auth,
     version: API_VERSION
 };
 
-const drive = google.drive(auhtOptions);
+const drive = google.drive(authOptions);
+
+const getAll = async (nextPage = '', fields = DEFAULT_FIELDS) => {
+    const params = {
+        fields: `files(${fields}), nextPageToken`,
+        pageSize: DEFAULT_PAGE_SIZE
+    };
+
+    if (nextPage !== '') params.nextPageToken = nextPage;
+
+    try {
+        const {
+            data: { files, nextPageToken }
+        } = await drive.files.list(params);
+
+        return {
+            files,
+            nextPageToken
+        };
+    } catch (error) {
+        return new Error(error.message);
+    }
+};
 
 const get = async (fileId, fields = DEFAULT_FIELDS) => {
-    await drive.permissions.create({
-        fileId,
-        requestBody: PUBLIC_PERMISSION
-    });
+    try {
+        await drive.permissions.create({
+            fileId,
+            requestBody: PUBLIC_PERMISSION
+        });
 
-    const file = await drive.files.get({
-        fields,
-        fileId
-    });
+        const file = await drive.files.get({
+            fields,
+            fileId
+        });
 
-    return file;
+        return file;
+    } catch (error) {
+        return new Error(error.message);
+    }
+};
+
+const remove = async fileId => {
+    try {
+        await drive.files.trash({ fileId });
+        return { message: `${fileId} was deleted` };
+    } catch (error) {
+        return new Error(error.message);
+    }
 };
 
 module.exports = {
@@ -67,5 +103,7 @@ module.exports = {
     FIELD_NAME,
     FIELD_PERMISSIONS,
     FIELD_VIEW_LINK,
-    get
+    get,
+    getAll,
+    remove
 };

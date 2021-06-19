@@ -8,8 +8,9 @@
   "scripts": {
     "test": "NODE_ENV=test && jest --detectOpenHandles --forceExit",
     "test:win": "SET NODE_ENV=test && jest --detectOpenHandles --forceExit",
-    "cp:service_account": "cp botnorrea_credentials.json src/constants/botnorrea_credentials.json",
-    "cp": "yarn cp:service_account",
+    "cp:gdrive_account": "cp botnorrea_credentials.json src/constants/botnorrea_credentials.json",
+    "cp:firebase_account": "cp botnorrea-firebase-adminsdk.json src/constants/botnorrea-firebase-adminsdk.json",
+    "cp": "yarn cp:gdrive_account && yarn cp:firebase_account",
     "server:dev": "nodemon src/index.js",
     "start": "yarn cp && node src/index.js"
   },
@@ -17,6 +18,7 @@
     "axios": "^0.21.1",
     "discord.js": "^12.5.3",
     "express": "^4.17.1",
+    "firebase-admin": "^9.9.0",
     "googleapis": "39",
     "telegraf": "^4.3.0"
   },

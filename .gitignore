@@ -1,3 +1,5 @@
 /node_modules
 /**/constants/botnorrea_credentials.json
+/**/constants/botnorrea-firebase-adminsdk.json
 /botnorrea_credentials.json
+/botnorrea-firebase-adminsdk.json
