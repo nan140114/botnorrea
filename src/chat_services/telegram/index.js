@@ -14,13 +14,17 @@ commandFiles.forEach(commandFile => {
     const command = `${BOT_PREFIX}${commandScript.name}`;
     const firstIndex = 0;
     const execute = context => {
-        const { message } = context;
-        const args = message.text
-            .trim()
-            .split(' ')
-            .filter((_, index) => index > firstIndex);
+        try {
+            const { message } = context;
+            const args = message.text
+                .trim()
+                .split(' ')
+                .filter((_, index) => index > firstIndex);
 
-        commandScript.execute(context, args);
+            commandScript.execute(context, args);
+        } catch (error) {
+            console.log(error.message);
+        }
     };
     bot.command(command, execute);
 });

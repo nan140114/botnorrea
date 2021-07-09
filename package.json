@@ -11,7 +11,7 @@
     "cp:gdrive_account": "cp botnorrea_credentials.json src/constants/botnorrea_credentials.json",
     "cp:firebase_account": "cp botnorrea-firebase-adminsdk.json src/constants/botnorrea-firebase-adminsdk.json",
     "cp": "yarn cp:gdrive_account && yarn cp:firebase_account",
-    "server:dev": "nodemon src/index.js",
+    "server:dev": "yarn cp && nodemon src/index.js",
     "start": "yarn cp && node src/index.js"
   },
   "dependencies": {

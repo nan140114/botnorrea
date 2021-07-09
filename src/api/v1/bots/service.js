@@ -1,6 +1,6 @@
+const { BOT_START, BOT_STOP, BOT_NONE } = require('../../../constants');
 const discord = require('../../../chat_services/discord');
 const telegram = require('../../../chat_services/telegram');
-const { BOT_START, BOT_STOP, BOT_NONE } = require('../../../constants');
 
 const gracefulStop = () => {
     discord.gracefulStop();

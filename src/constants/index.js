@@ -24,6 +24,10 @@ const DISCORD_TOKEN = [
 
 const TELEGRAM_TOKEN = '1674935871:AAG0uYoBkCjtZjNP04fMV7nlmqAGZZOhBSs';
 
+const FLICKR_API = 'https://www.flickr.com';
+const FLICKR_KEY = '1ae1699a7523a47c91ab02c4506b5872';
+const FLICKR_SECRET = '477a71f7138eefa1';
+
 const GDRIVE_CREDENTIALS = NODE_ENV === 'test'
     ? require('./__mocks__/botnorrea_credentials.json')
     : require('./botnorrea_credentials.json');
@@ -48,6 +52,9 @@ module.exports = {
     DISCORD_PUBLIC_KEY,
     DISCORD_TOKEN,
     FIREBASE_CREDENTIALS,
+    FLICKR_API,
+    FLICKR_KEY,
+    FLICKR_SECRET,
     GDRIVE_CREDENTIALS,
     HOST,
     NODE_ENV,
